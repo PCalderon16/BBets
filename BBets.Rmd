@@ -15,6 +15,7 @@ require(tidyverse)
 require(tigerstats)
 require(knitr)
 source(file="BrLw.R")
+options(digits=2)
 ```
 
 
@@ -38,19 +39,11 @@ The function will be given a class_size by number of students, odds, and Number_
 
 # In the class and payoff as described  If you highered 40 brownlow substitute teachers to do the same thing that Brownlow did then.
 ## what is their average earnings
-## the standard deviation and a 95% confidence interval for their earnings?
-  
-<!--Explain and display your method of coming up with a 95% confidence interval of  professor Brownlows winnings (or losings)-->
-
-
-# What are the fair odds? Use manipulation of odds in the function to tune Brownlows earnings to zero. 
-
-We are going to hire 100 Brownlows to repeat what Brownlow did
 
 ```{r}
-Substitute <- numeric(length=1000)
-for (j in 1:1000) {
-  Substitute[j] = BrLw(odds=4.38)
+Substitute <- numeric(length=40)
+for (j in 1:40) {
+  Substitute[j] = BrLw(odds=2)
 }
 ```
 
@@ -58,22 +51,42 @@ for (j in 1:1000) {
 Substitute <- sort(Substitute)
 ```
 
-
-```{r}
-hist(Substitute)
-```
 ```{r}
 mean(Substitute)
 ```
 
+The average earnings would be about `r mean(Substitute)` if we were to hire 40 Brownlows to do the bet. 
+
+## the standard deviation and a 95% confidence interval for their earnings?
+
 ```{r}
 sd(Substitute)
 ```
-Using the mean and standard deviation (subtracting 110 from the mean and adding 110 to the mean) we found the interval we're looking for, and it looks like the profit is centered around zero. If the profit is centered around zero, that is fair odds. More specifically, the fair odds is when Brownlow would wager 4.38 dollars for every 1 dollar the students would wager. 
+
+The standard deviation is `r sd(Substitute)`, and based on the central limit theorem, the 95% interval will be within two standard deviation values above and below the mean. So, the 95% interval is from `r mean(Substitute) - 2*sd(Substitute)` to `r mean(Substitute) + 2*sd(Substitute)`. This means that 95% of data lies within this range of the normal distribution. 
+ 
+  
+<!--Explain and display your method of coming up with a 95% confidence interval of  professor Brownlows winnings (or losings)-->
+
+
+# What are the fair odds? Use manipulation of odds in the function to tune Brownlows earnings to zero. 
+
+```{r}
+Fair <- numeric(length=1000)
+for (j in 1:1000) {
+  Fair[j] = BrLw(odds=4.38)
+}
+```
+
+```{r}
+hist(Fair)
+```
+
+When the odds is 4.38:1, Brownlowns profits centers around $0 as shown by the histogram above. Therefore, the fair odds is when Brownlows wager $4.38 for every $1 that the students would wager for the bet. 
+
 
 
 <!--Decide on your methods:  In this section explain the approach you will take to attack the issue --- how will you decide on a likely estimate of professor Brownlow's earnings or losses after 637 bets. Also explain how you construct a 95% confidence interval about your estimate of his winnings !-->
-
 
 
 
@@ -100,4 +113,8 @@ With a 2:1 odds, it appears that there must be about 28 or 29 people in the clas
 # Discussion and Conclusion
 
 <!--Discussion and conclusion here.  If professor Brownlow is consistantly making or losing money how could he change his payout so that his profits center on zero?  Also discuss what size his class should be in order to have his current scheme balance at zero profit.!-->
+
+In this write-up, we explored 
+
+
 
