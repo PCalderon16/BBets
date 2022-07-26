@@ -114,7 +114,7 @@ With a 2:1 odds, it appears that there must be about 28 or 29 people in the clas
 
 <!--Discussion and conclusion here.  If professor Brownlow is consistantly making or losing money how could he change his payout so that his profits center on zero?  Also discuss what size his class should be in order to have his current scheme balance at zero profit.!-->
 
-In this write-up, we explored 
+In this write-up, we explored creating a function that would simulate bets between Brownlow and students in a class. By manipulating this function, we were to figure out 
 
 
 
