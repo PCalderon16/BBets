@@ -7,7 +7,7 @@ output:
     toc: true
     toc_depth: 5
 date: "`r Sys.Date()`"    
-    
+     
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -45,6 +45,32 @@ The function will be given a class_size by number of students, odds, and Number_
 
 # What are the fair odds? Use manipulation of odds in the function to tune Brownlows earnings to zero. 
 
+We are going to hire 100 Brownlows to repeat what Brownlow did
+
+```{r}
+Substitute <- numeric(length=1000)
+for (j in 1:1000) {
+  Substitute[j] = BrLw(odds=4.38)
+}
+```
+
+```{r}
+Substitute <- sort(Substitute)
+```
+
+
+```{r}
+hist(Substitute)
+```
+```{r}
+mean(Substitute)
+```
+
+```{r}
+sd(Substitute)
+```
+Using the mean and standard deviation (subtracting 110 from the mean and adding 110 to the mean) we found the interval we're looking for, and it looks like the profit is centered around zero. If the profit is centered around zero, that is fair odds. More specifically, the fair odds is when Brownlow would wager 4.38 dollars for every 1 dollar the students would wager. 
+
 
 <!--Decide on your methods:  In this section explain the approach you will take to attack the issue --- how will you decide on a likely estimate of professor Brownlow's earnings or losses after 637 bets. Also explain how you construct a 95% confidence interval about your estimate of his winnings !-->
 
@@ -55,9 +81,18 @@ The function will be given a class_size by number of students, odds, and Number_
 
 <!--Explain and display the results of your method of coming up with the estimate of professor Brownlows betting profits!-->
 
+```{r}
+Sub <- numeric(length=1000)
+for (j in 1:1000) {
+  Sub[j] = BrLw(numClass = 29)
+}
+```
 
-
-
+```{r}
+hist(Sub)
+```
+  
+With a 2:1 odds, it appears that there must be about 28 or 29 people in the class in order to for the bet to have a fair outcome or, in other words, have the profit be centered towards zero. The histogram above shows the distribution when there are 29 students in the class, and given than the peak lies on the right of zero, Brownlow still gains money from the bet. Meanwhile, making the class size 28 produces a distribution in which the peak lies to the left of zero which means that Brownlow loses money in the bet. Therefore, we can assume that the class size must be between 28 and 29 for there to be a fair bet with a 2:1 odds. 
 
 
 
